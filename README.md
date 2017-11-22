@@ -5,16 +5,36 @@ UIN Sunan Kalijaga Surat Information System is base final project for RPL study.
 ## React-Native
 With `React Native`, you don't build a “mobile web app”, an “HTML5 app”, or a “hybrid app”. You build a real mobile app that's indistinguishable from an app built using Objective-C or Java. React Native uses the same fundamental UI building blocks as regular iOS and Android apps. You just put those building blocks together using JavaScript and React.
 
+## Project Structure
+
+```
+app/
+├── android/
+├── ios/
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── layouts/
+│   ├── store/
+├── index.js
+```
+
+We focus at `src` directory, it contains all that we need.
+
 ## Requirements
 
 * `Node.js` (Download [Node.js](https://nodejs.org/en/download/))
-* Git command (Download [Git Installer](https://git-scm.com/downloads))
-* Java Development Kit 8 (Download [Jdk Installer](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
-* `Android SDK` or can be installed by Android Studio
+* `Git` command (Download [Git Installer](https://git-scm.com/downloads))
 
 ## How to Use
 
-### Configuration
+### Configuration Android
+
+First, install some recuirement below :
+
+* Java Development Kit 8 (Download [Jdk Installer](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html))
+* `Android SDK` or can be installed by Android Studio
 
 You can follow the step below to configure requirements such as SDK tools and Setting up the environtment variable. Open your Android Studio and find `SDK Manager` .Select the "SDK Platforms" tab from within the `SDK Manager`, then check the box next to "Show Package Details" in the bottom right corner. Look for and expand the `Android 6.0` (Marshmallow) entry, then make sure the following items are all checked:
 
@@ -38,21 +58,35 @@ The SDK is installed, by default, at the following location:
 c:\Users\YOUR_USERNAME\AppData\Local\Android\Sdk
 ``` 
 
+### Confoguration iOS
+
+The easiest way to install Xcode is via the Mac App Store. Installing Xcode will also install the iOS Simulator and all the necessary tools to build your iOS app.
+
+If you have already installed Xcode on your system, make sure it is version 8 or higher. You will also need to install the Xcode Command Line Tools. Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
+
+![IMG_IOS](https://facebook.github.io/react-native/img/XcodeCommandLineTools.png)
+
 ### Installation
 
-After you download or clone this application and the requirements are ready, and modules and add React Native comand line interface by using this `comand`  
+After you download or clone this application and the requirements are ready, install dependency and add React Native comand line interface by using this `comand`  
 
 ```
 $ npm install
-$ npm install -g react-native-cli
+$ npm install react-native-cli
 ```
 
 ### Run The App
 
-Make sure that you're already connect to android emulator device or use real device ( see this [Documentation](https://facebook.github.io/react-native/docs/running-on-device.html)) . You can run using this comand 
+Make sure that you're already connect to android or iOS emulator device or use real device . You can run using this comand for android
 
 ```
-$ react-native run-android
+$ npm run android
 ```
 
-Wait the procces, it will take a several minutes. `Happy Code`
+and for iOS using
+
+```
+$ npm run ios
+```
+
+Wait the procces, it will take a several minutes. `Happy Developing`
