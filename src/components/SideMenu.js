@@ -19,9 +19,9 @@ class SideBar extends Component {
         <Content bounces={false} style={{ flex: 1, backgroundColor: '#fff', top: -1 }}>
           <Image source={drawerCover} style={styles.drawerCover} />
           <Thumbnail large style={styles.drawerImage} source={drawerImage} />
-          <SideMenuItem dynamicIcon='md-create' dynamicTitle='Tulis Surat' navigator={this.props.navigator3} />
-          <SideMenuItem dynamicIcon='md-mail' dynamicTitle='Surat Masuk' navigator={this.props.navigator1} />
-          <SideMenuItem dynamicIcon='md-exit' dynamicTitle='Surat Keluar' navigator={this.props.navigator2} />
+          <SideMenuItem dynamicIcon='create' dynamicTitle='Tulis Surat' navigator={this.props.navigator3} />
+          <SideMenuItem dynamicIcon='mail' dynamicTitle='Surat Masuk' navigator={this.props.navigator1} />
+          <SideMenuItem dynamicIcon='exit' dynamicTitle='Surat Keluar' navigator={this.props.navigator2} />
         </Content>
       </Container>
     );

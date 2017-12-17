@@ -18,7 +18,7 @@ export default class FabButton extends Component {
             position="bottomRight"
             onPress={ this.props.navigator }
            >
-            <Icon name="md-add" />
+            <Icon name="add" />
           </Fab>
         </View>
     )
