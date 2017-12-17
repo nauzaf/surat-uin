@@ -9,6 +9,9 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props)
+    if (this.props.isLogin) {
+      alert('anda sudah login')
+    }
     this.state = {
       username: null,
       password: null
@@ -16,7 +19,10 @@ class LoginPage extends Component {
   }
 
   login = () => {
-    this.props.dispatchLogin()
+    this.props.dispatchLogin({ 
+      user: this.state.username,
+      password: this.state.password
+    })
   }
 
   render () {
@@ -80,7 +86,7 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchLogin: () => dispatch(login())
+    dispatchLogin: (auth) => dispatch(login(auth))
   }
 }
 
