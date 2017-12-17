@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../store/actions/login'
-import { AppState, TextInput, Button, View, Image, StyleSheet, Dimensions } from 'react-native'
+import { AppState, TextInput, Button, View, Image, StyleSheet, Dimensions,Text } from 'react-native'
 
 class LoginPage extends Component {
+
+  static navigationOptions = { header: null }
+
   constructor(props) {
     super(props)
     this.state = {
@@ -17,8 +20,13 @@ class LoginPage extends Component {
   }
 
   render () {
+
+    const { navigate } = this.props.navigation
+
     return (
       <View style={styles.Container}>
+      <Text
+      style={{alignItems: 'center', alignSelf: 'center', fontSize: 20, marginBottom:10}}>SISTIM SURAT UIN SUKA</Text>
         <Image
           style={{marginBottom: 40, alignSelf: 'center'}}
           source={require('../assets/img/logouin.png')}
@@ -40,7 +48,7 @@ class LoginPage extends Component {
         />        
         <Button
           style={{marginTop: 20}}
-          onPress= {this.login}
+          onPress= {() => navigate('KotakMasuk')}
           title="Login"
           color='green'
         />
