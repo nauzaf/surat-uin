@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { login } from '../store/actions/login'
-import { AppState, TextInput, Button, View, Image, StyleSheet, Dimensions,Text } from 'react-native'
+import { TextInput, Button, View, Image, StyleSheet, Text } from 'react-native'
 
 class LoginPage extends Component {
 
@@ -9,8 +9,8 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props)
-    if (this.props.isLogin) {
-      alert('anda sudah login')
+    if (this.props.user.isLogin) {
+      alert('Anda sudah login, tekan tombol login untuk masuk kembali')
     }
     this.state = {
       username: null,
@@ -19,10 +19,15 @@ class LoginPage extends Component {
   }
 
   login = () => {
-    this.props.dispatchLogin({ 
-      user: this.state.username,
-      password: this.state.password
-    })
+    if (!this.props.user.isLogin) {
+      this.props.dispatchLogin({ 
+        user: this.state.username,
+        password: this.state.password
+      })
+    }
+    else {
+      this.props.navigation.navigate('KotakMasuk')
+    }
   }
 
   render () {
@@ -31,8 +36,7 @@ class LoginPage extends Component {
 
     return (
       <View style={styles.Container}>
-      <Text
-      style={{alignItems: 'center', alignSelf: 'center', fontSize: 20, marginBottom:10}}>SISTIM SURAT UIN SUKA</Text>
+        <Text style={{alignItems: 'center', alignSelf: 'center', fontSize: 20, marginBottom:10}}>SISTIM SURAT UIN SUKA</Text>
         <Image
           style={{marginBottom: 40, alignSelf: 'center'}}
           source={require('../assets/img/logouin.png')}
@@ -54,7 +58,7 @@ class LoginPage extends Component {
         />        
         <Button
           style={{marginTop: 20}}
-          onPress= {() => navigate('KotakMasuk')}
+          onPress= { this.login }
           title="Login"
           color='green'
         />
@@ -80,7 +84,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps (state) {
   return {
-    isLogin: state.login.isLogin
+    user: state.login
   }
 }
 
