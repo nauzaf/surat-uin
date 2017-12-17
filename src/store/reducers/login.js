@@ -19,7 +19,6 @@ export default function (state = initialState, action) {
         .then(response => {
           if (response.data.status === 'ok') {
             let responData = response.data
-            console.log(responData)
             if (responData.data === 1 || responData.data === 2 || responData.data === 3 || responData.data === 5 || responData.data === 6) {
               alert('Terjadi kesalahan pada sistem. Hubungi PTIPD UIN Sunan Kalijaga')
             }
@@ -32,15 +31,15 @@ export default function (state = initialState, action) {
               state.firstName = responData.data[0].NamaDepan
               state.lastName = responData.data[0].NamaBelakang
               state.mailAddress = responData.data[0].AlamatEmail
-              alert('Assalamualaikum ' + responData.data[0].NamaDepan)
+              alert('Assalamualaikum ' + responData.data[0].NamaDepan + ' tekan tombol login sekali lagi untuk masuk')
             }
           }
           else {
-            alert('Terjadi kesalahan , silahkan cek koneksi anda')
+            alert('Terjadi kesalahan pada sistem. Hubungi PTIPD UIN Sunan Kalijaga')
           }
         })
         .catch(e => {
-          alert('Mohon maaf terjadi kesalahan')
+          alert('Mohon maaf terjadi kesalahan, silahkan cek koneksi anda')
         })
       return state
     default :
