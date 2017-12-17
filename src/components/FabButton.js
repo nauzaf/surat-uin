@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { Container, Header, View, Button, Icon, Fab } from 'native-base'
+import { View, Icon, Fab } from 'native-base'
 
 export default class FabButton extends Component {
   constructor(props) {
       super(props)
-    this.state = {
-      active: 'true'
-    }
+      this.state = {
+        active: 'true'
+      }
   }
   render() {
     return (  
@@ -14,11 +14,11 @@ export default class FabButton extends Component {
           <Fab
             active={this.state.active}
             direction="up"
-            containerStyle={{ }}
             style={{ backgroundColor: 'green' }}
             position="bottomRight"
+            onPress={ this.props.navigator }
            >
-            <Icon name="add" />
+            <Icon name="md-add" />
           </Fab>
         </View>
     )
