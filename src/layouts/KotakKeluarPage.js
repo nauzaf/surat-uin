@@ -5,10 +5,10 @@ import ListSurat from '../components/ListSurat'
 import FabButton from '../components/FabButton'
 import SideBar from '../components/SideMenu'
 
-import { Drawer, Container } from 'native-base'
+import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
-import { getSuratKeluar } from '../store/actions/surat_keluar'
+import { doGetSuratKeluar } from '../store/actions/surat_keluar'
 
 class KotakMasukPage extends Component {
 
@@ -51,12 +51,16 @@ class KotakMasukPage extends Component {
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='Kotak Keluar' aksi = {this.open}/>
-          {
-            this.props.suratKeluar.data.map( (suratKeluar) => (
-              <ListSurat asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } />
-            ))
-          }
+          <Toolbar judul='Surat Keluar' aksi = {this.open}/>
+          <Content style={{marginLeft:-15}}>
+            <List>
+              {
+                this.props.suratKeluar.data.map( (suratKeluar, index) => (
+                  <ListSurat key={index} asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } />
+                ))
+              }
+            </List>
+          </Content>
           <FabButton navigator={this.navigate.tulisSurat} />
         </Container>
       </Drawer>
@@ -66,14 +70,14 @@ class KotakMasukPage extends Component {
 
 function mapStateToProps (state) {
   return {
-    nim: state.login.userName,
+    nim: state.user.userName,
     suratKeluar: state.suratKeluar
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratKeluar: (nim) => dispatch(getSuratKeluar(nim))
+    dispatchGetSuratKeluar: (nim) => dispatch(doGetSuratKeluar(nim))
   }
 }
 
