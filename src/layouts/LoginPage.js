@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../store/actions/login'
+import { doLogin } from '../store/actions/user'
 import { TextInput, Button, View, Image, StyleSheet, Text } from 'react-native'
 
 class LoginPage extends Component {
@@ -9,8 +9,8 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props)
-    if (this.props.user.isLogin) {
-      alert('Anda sudah login, tekan tombol login untuk masuk kembali')
+    if (props.user.isLogin) {
+      this.props.navigation.navigate('KotakMasuk')
     }
     this.state = {
       username: null,
@@ -20,19 +20,11 @@ class LoginPage extends Component {
 
   login = () => {
     if (!this.props.user.isLogin) {
-      this.props.dispatchLogin({ 
-        user: this.state.username,
-        password: this.state.password
-      })
-    }
-    else {
-      this.props.navigation.navigate('KotakMasuk')
+      this.props.dispatchDoLogin(this.state.username, this.state.password)
     }
   }
 
   render () {
-
-    const { navigate } = this.props.navigation
 
     return (
       <View style={styles.Container}>
@@ -84,13 +76,13 @@ const styles = StyleSheet.create({
 
 function mapStateToProps (state) {
   return {
-    user: state.login
+    user: state.user
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchLogin: (auth) => dispatch(login(auth))
+    dispatchDoLogin: (username, pass) => dispatch(doLogin(username, pass))
   }
 }
 
