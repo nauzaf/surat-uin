@@ -13,12 +13,12 @@ export default class FabButton extends Component {
         <View style={{ flex: 1 }}>
           <Fab
             active={this.state.active}
-            direction="up"
+            direction='up'
             style={{ backgroundColor: 'green' }}
-            position="bottomRight"
+            position='bottomRight'
             onPress={ this.props.navigator }
            >
-            <Icon name="add" />
+            <Icon name='add' />
           </Fab>
         </View>
     )

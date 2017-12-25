@@ -1,5 +1,5 @@
-import React, { Component } from "react"
-import { Text, ListItem, Icon, Left } from "native-base"
+import React, { Component } from 'react'
+import { Text, ListItem, Icon, Left } from 'native-base'
 
 export default class SideMenuItem extends Component {
   constructor(props) {
