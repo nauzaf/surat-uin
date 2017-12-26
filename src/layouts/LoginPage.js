@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { doLogin } from '../store/actions/user'
+import { doGetSuratMasuk } from '../store/actions/suratMasuk'
+import { doGetSuratKeluar } from '../store/actions/suratKeluar'
 import { TextInput, Button, View, Image, StyleSheet, Text } from 'react-native'
 
 class LoginPage extends Component {
@@ -10,12 +12,18 @@ class LoginPage extends Component {
   constructor(props) {
     super(props)
     if (props.user.isLogin) {
-      this.props.navigation.navigate('KotakMasuk')
+      this.getSurat(this.props.user.userName)
+      this.props.navigation.navigate('Welcome')
     }
     this.state = {
       username: null,
       password: null
     }
+  }
+
+  getSurat = (key) => {
+    this.props.dispatchGetSuratMasuk(key)
+    this.props.dispatchGetSuratKeluar(key)
   }
 
   login = () => {
@@ -82,7 +90,9 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchDoLogin: (username, pass) => dispatch(doLogin(username, pass))
+    dispatchDoLogin: (username, pass) => dispatch(doLogin(username, pass)),
+    dispatchGetSuratMasuk: (key) => dispatch(doGetSuratMasuk(key)),
+    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
   }
 }
 

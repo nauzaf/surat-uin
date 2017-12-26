@@ -8,7 +8,7 @@ import SideBar from '../components/SideMenu'
 import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
-import { doGetSuratKeluar } from '../store/actions/surat_keluar'
+import { doGetSuratKeluar } from '../store/actions/suratKeluar'
 
 class KotakMasukPage extends Component {
 
@@ -16,10 +16,19 @@ class KotakMasukPage extends Component {
 
   constructor(props) {
     super(props)
-    if (!this.props.isLoad) {
-      this.props.dispatchGetSuratKeluar(this.props.nim)
+  }
+
+  load = () => {
+    if (!this.props.suratKeluar.isLoad){
+      this.props.dispatchGetSuratKeluar(this.props.key)
     }
   }
+
+  componentDidMount () {
+    this.load()
+  }
+
+  data = this.props.suratKeluar.data
 
   closeDrawer () {
     this._drawer._root.close()
@@ -42,8 +51,6 @@ class KotakMasukPage extends Component {
  
   render(){
 
-    const { navigate } = this.props.navigation
-
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
@@ -55,7 +62,7 @@ class KotakMasukPage extends Component {
           <Content style={{marginLeft:-15}}>
             <List>
               {
-                this.props.suratKeluar.data.map( (suratKeluar, index) => (
+                this.data.map( (suratKeluar, index) => (
                   <ListSurat key={index} asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } />
                 ))
               }
@@ -70,14 +77,14 @@ class KotakMasukPage extends Component {
 
 function mapStateToProps (state) {
   return {
-    nim: state.user.userName,
-    suratKeluar: state.suratKeluar
+    key: state.user.userName,
+    suratKeluar: state.suratkeluar
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratKeluar: (nim) => dispatch(doGetSuratKeluar(nim))
+    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
   }
 }
 

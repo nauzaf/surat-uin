@@ -8,7 +8,7 @@ import SideBar from '../components/SideMenu'
 import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
-import { doGetSuratMasuk } from '../store/actions/surat_masuk'
+import { doGetSuratMasuk } from '../store/actions/suratMasuk'
 
 class KotakMasukPage extends Component {
 
@@ -16,10 +16,19 @@ class KotakMasukPage extends Component {
 
   constructor(props) {
     super(props)
-    if (!this.props.isLoad) {
-      this.props.dispatchGetSuratMasuk(this.props.nim)
+  }
+
+  load = () => {
+    if (!this.props.suratMasuk.isLoad){
+      this.props.dispatchGetSuratMasuk(this.props.key)
     }
   }
+
+  componentDidMount () {
+    this.load()
+  }
+
+  data = this.props.suratMasuk.data
 
   closeDrawer () {
     this._drawer._root.close()
@@ -39,10 +48,7 @@ class KotakMasukPage extends Component {
     tulisSurat: () => this.props.navigation.navigate('TulisSurat')
   }
  
- 
   render(){
-
-    const { navigate } = this.props.navigation
 
     return(
       <Drawer
@@ -55,7 +61,7 @@ class KotakMasukPage extends Component {
           <Content style={{marginLeft:-15}}>
             <List>
               {
-                this.props.suratMasuk.data.map( (suratMasuk, index) => (
+                this.data.map( (suratMasuk, index) => (
                   <ListSurat key={index} asalSurat={ suratMasuk.DARI } catatan={ suratMasuk.CATATAN } tglMasuk={ suratMasuk.TGL_MASUK } />
                 ))
               }
@@ -70,14 +76,14 @@ class KotakMasukPage extends Component {
 
 function mapStateToProps (state) {
   return {
-    nim: state.user.userName,
-    suratMasuk: state.suratMasuk
+    key: state.user.userName,
+    suratMasuk: state.suratmasuk
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratMasuk: (nim) => dispatch(doGetSuratMasuk(nim))
+    dispatchGetSuratMasuk: (key) => dispatch(doGetSuratMasuk(key))
   }
 }
 
