@@ -6,12 +6,14 @@ import KotakMasukPage from './layouts/KotakMasukPage'
 import KotakKeluarPage from './layouts/KotakKeluarPage'
 import LoginPage from './layouts/LoginPage'
 import TulisSuratPage from './layouts/TulisSuratPage'
+import WelcomePage from './layouts/WelcomePage'
 
 export const AppNavigator = StackNavigator({
     Login: { screen: LoginPage },
     KotakMasuk: { screen: KotakMasukPage },
     KotakKeluar: { screen: KotakKeluarPage },
-    TulisSurat: { screen: TulisSuratPage }
+    TulisSurat: { screen: TulisSuratPage },
+    Welcome: { screen: WelcomePage }
 })
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
