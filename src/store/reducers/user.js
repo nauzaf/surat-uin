@@ -1,5 +1,4 @@
 import * as types from '../action-types'
-import { NavigationAction } from 'react-navigation'
 
 const initialState = {
   isLogin: false,
