@@ -12,12 +12,13 @@ if (__DEV__) {
   composeEnhancers = (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ||
     require('remote-redux-devtools').composeWithDevTools)({
     name: Platform.OS
-  });
+  })
   /* eslint-enable no-underscore-dangle */
 }
 
 const config = {
   key: 'root',
+  blacklist: ['nav'],
   storage
 }
 
