@@ -8,9 +8,9 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch(action.type) {
-    case types.GET_SURAT_MASUK:
-      state.totalSurat = action.suratMasuk.data.length
-      state.data = action.suratMasuk.data
+    case types.GET_SURAT_PERSONAL:
+      state.totalSurat = action.suratPersonal.data.length
+      state.data = action.suratPersonal.data
       state.isLoad = true
       return state
     default :

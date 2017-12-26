@@ -1,6 +1,9 @@
 import api from '../../api'
 import * as types from '../action-types'
 
+import { doGetSuratPersonal } from './suratPersonal'
+import { doGetSuratKeluar } from './suratKeluar'
+
 export function doLogin (username, pass) {
   return (dispatch) => {
     api.post('/login', {
@@ -18,7 +21,9 @@ export function doLogin (username, pass) {
           }
           else {
             dispatch(login(responData.data[0]))
-            dispatch(goToKotakMasuk())
+            dispatch(doGetSuratPersonal(responData.data[0].NamaPengguna))
+            dispatch(doGetSuratKeluar(responData.data[0].NamaPengguna))
+            dispatch(goToWelcome())
           }
         }
         else {
@@ -35,6 +40,6 @@ export function login (dataUser) {
   return { type: types.LOGIN, dataUser }
 }
 
-export function goToKotakMasuk () {
-  return { type: types.NAV_KOTAK_MASUK }
+export function goToWelcome () {
+  return { type: types.NAV_WELCOME }
 }

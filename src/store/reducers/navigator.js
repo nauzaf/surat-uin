@@ -8,9 +8,9 @@ const initialState = AppNavigator.router.getStateForAction(NavigationActions.ini
 export default (state = initialState, action) => {
     let nextState
     switch (action.type) {
-        case types.NAV_KOTAK_MASUK:
+        case types.NAV_WELCOME:
             nextState = AppNavigator.router.getStateForAction(
-                NavigationActions.navigate({ routeName: 'KotakMasuk' }),
+                NavigationActions.navigate({ routeName: 'Welcome' }),
                 state
             )
             break

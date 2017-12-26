@@ -1,13 +1,13 @@
 import api from '../../api'
 import * as types from '../action-types'
 
-export function doGetSuratKeluar (nim) {
+export function doGetSuratKeluar (key) {
   return (dispatch) => {
     api.post('/surat_keluar/get_surat_personal', {
       api_kode: '90006',
       api_subkode: '1',
       api_search: [
-        nim,
+        key,
         '10'
       ]
     })

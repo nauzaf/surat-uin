@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { doLogin } from '../store/actions/user'
-import { doGetSuratMasuk } from '../store/actions/suratMasuk'
+import { doGetSuratPersonal } from '../store/actions/suratPersonal'
 import { doGetSuratKeluar } from '../store/actions/suratKeluar'
 import { TextInput, Button, View, Image, StyleSheet, Text } from 'react-native'
 
@@ -22,7 +22,7 @@ class LoginPage extends Component {
   }
 
   getSurat = (key) => {
-    this.props.dispatchGetSuratMasuk(key)
+    this.props.dispatchGetSuratPersonal(key)
     this.props.dispatchGetSuratKeluar(key)
   }
 
@@ -91,7 +91,7 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     dispatchDoLogin: (username, pass) => dispatch(doLogin(username, pass)),
-    dispatchGetSuratMasuk: (key) => dispatch(doGetSuratMasuk(key)),
+    dispatchGetSuratPersonal: (key) => dispatch(doGetSuratPersonal(key)),
     dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
   }
 }

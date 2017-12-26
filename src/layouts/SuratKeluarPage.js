@@ -8,9 +8,9 @@ import SideBar from '../components/SideMenu'
 import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
-import { doGetSuratMasuk } from '../store/actions/suratMasuk'
+import { doGetSuratKeluar } from '../store/actions/suratKeluar'
 
-class KotakMasukPage extends Component {
+class SuratKeluarPage extends Component {
 
   static navigationOptions = { header: null }
 
@@ -19,8 +19,8 @@ class KotakMasukPage extends Component {
   }
 
   load = () => {
-    if (!this.props.suratMasuk.isLoad){
-      this.props.dispatchGetSuratMasuk(this.props.key)
+    if (!this.props.suratKeluar.isLoad){
+      this.props.dispatchGetSuratKeluar(this.props.keyNumber)
     }
   }
 
@@ -28,7 +28,7 @@ class KotakMasukPage extends Component {
     this.load()
   }
 
-  data = this.props.suratMasuk.data
+  data = this.props.suratKeluar.data
 
   closeDrawer () {
     this._drawer._root.close()
@@ -43,26 +43,27 @@ class KotakMasukPage extends Component {
   }
 
   navigate = {
-    kotakMasuk: () => this.props.navigation.navigate('KotakMasuk'),
-    kotakKeluar: () => this.props.navigation.navigate('KotakKeluar'),
+    suratPersonal: () => this.props.navigation.navigate('SuratPersonal'),
+    suratKeluar: () => this.props.navigation.navigate('SuratKeluar'),
     tulisSurat: () => this.props.navigation.navigate('TulisSurat')
   }
+ 
  
   render(){
 
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} navigator1={this.navigate.kotakMasuk} navigator2={this.navigate.kotakKeluar} navigator3={this.navigate.tulisSurat} />}
+        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} />}
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='Surat Masuk' aksi = {this.open}/>
+          <Toolbar judul='Surat Keluar' aksi = {this.open}/>
           <Content style={{marginLeft:-15}}>
             <List>
               {
-                this.data.map( (suratMasuk, index) => (
-                  <ListSurat key={index} asalSurat={ suratMasuk.DARI } catatan={ suratMasuk.CATATAN } tglMasuk={ suratMasuk.TGL_MASUK } />
+                this.data.map( (suratKeluar, index) => (
+                  <ListSurat key={index} asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } />
                 ))
               }
             </List>
@@ -76,15 +77,15 @@ class KotakMasukPage extends Component {
 
 function mapStateToProps (state) {
   return {
-    key: state.user.userName,
-    suratMasuk: state.suratmasuk
+    keyNumber: state.user.userName,
+    suratKeluar: state.suratkeluar
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratMasuk: (key) => dispatch(doGetSuratMasuk(key))
+    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(KotakMasukPage)
+export default connect(mapStateToProps, mapDispatchToProps)(SuratKeluarPage)

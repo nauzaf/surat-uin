@@ -7,7 +7,6 @@ import SideBar from '../components/SideMenu'
 import { Drawer, Container, List, Content, Text } from 'native-base'
 
 import { connect } from 'react-redux'
-import { doGetSuratMasuk } from '../store/actions/suratMasuk'
 
 class WelcomePage extends Component {
 
@@ -30,8 +29,8 @@ class WelcomePage extends Component {
   }
 
   navigate = {
-    kotakMasuk: () => this.props.navigation.navigate('KotakMasuk'),
-    kotakKeluar: () => this.props.navigation.navigate('KotakKeluar'),
+    suratPersonal: () => this.props.navigation.navigate('SuratPersonal'),
+    suratKeluar: () => this.props.navigation.navigate('Surateluar'),
     tulisSurat: () => this.props.navigation.navigate('TulisSurat')
   }
  
@@ -40,7 +39,7 @@ class WelcomePage extends Component {
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} navigator1={this.navigate.kotakMasuk} navigator2={this.navigate.kotakKeluar} navigator3={this.navigate.tulisSurat} />}
+        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} />}
         onClose={() => this.closeDrawer()} 
       >
         <Container>

@@ -20,7 +20,7 @@ class SideBar extends Component {
           <Image source={drawerCover} style={styles.drawerCover} />
           <Thumbnail large style={styles.drawerImage} source={drawerImage} />
           <SideMenuItem dynamicIcon='create' dynamicTitle='Tulis Surat' navigator={this.props.navigator3} />
-          <SideMenuItem dynamicIcon='mail' dynamicTitle='Surat Masuk' navigator={this.props.navigator1} />
+          <SideMenuItem dynamicIcon='mail' dynamicTitle='Surat Personal' navigator={this.props.navigator1} />
           <SideMenuItem dynamicIcon='exit' dynamicTitle='Surat Keluar' navigator={this.props.navigator2} />
         </Content>
       </Container>
