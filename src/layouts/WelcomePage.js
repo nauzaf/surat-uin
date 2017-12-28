@@ -43,7 +43,7 @@ class WelcomePage extends Component {
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='SI Surat UIN Suka' aksi = {this.open}/>
+          <Toolbar judul='SI Surat UIN Suka' aksi = {this.open} icon='menu'/>
 					<Text style={{alignSelf: 'center', marginTop: 200}}>Assalamualaikum</Text>
           <Text style={{alignSelf: 'center'}}>{this.props.name}</Text>
           <FabButton navigator={this.navigate.tulisSurat} />

@@ -42,7 +42,7 @@ class TulisSuratPage extends Component {
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='Tulis Surat' aksi = {this.open}/>
+          <Toolbar judul='Tulis Surat' aksi = {this.open} icon='menu'/>
           <Content>
             <Form>
               <Item floatingLabel>

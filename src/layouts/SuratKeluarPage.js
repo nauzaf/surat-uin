@@ -58,12 +58,12 @@ class SuratKeluarPage extends Component {
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='Surat Keluar' aksi = {this.open}/>
+          <Toolbar judul='Surat Keluar' aksi = {this.open} icon='menu'/>
           <Content style={{marginLeft:-15}}>
             <List>
               {
                 this.data.map( (suratKeluar, index) => (
-                  <ListSurat key={index} asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } />
+                  <ListSurat key={index} asalSurat={ suratKeluar.PERIHAL } catatan={ suratKeluar.G_JENIS } tglMasuk={ suratKeluar.WAKTU_KIRIM } navigator={()=>alert('hello')} />
                 ))
               }
             </List>

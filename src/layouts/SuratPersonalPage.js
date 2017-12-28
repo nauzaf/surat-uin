@@ -50,6 +50,8 @@ class SuratPersonalPage extends Component {
  
   render(){
 
+    const {navigate} = this.props.navigation
+
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
@@ -57,12 +59,12 @@ class SuratPersonalPage extends Component {
         onClose={() => this.closeDrawer()} 
       >
         <Container>
-          <Toolbar judul='Surat Personal' aksi = {this.open}/>
+          <Toolbar judul='Surat Personal' aksi = {this.open} icon='menu'/>
           <Content style={{marginLeft:-15}}>
             <List>
               {
                 this.data.map( (suratMasuk, index) => (
-                  <ListSurat key={index} asalSurat={ suratMasuk.DARI } catatan={ suratMasuk.CATATAN } tglMasuk={ suratMasuk.TGL_MASUK } />
+                  <ListSurat key={index} asalSurat={ suratMasuk.DARI } catatan={ suratMasuk.CATATAN } tglMasuk={ suratMasuk.TGL_MASUK } navigator={ () => navigate('DetailSuratPersonal', {idSurat: suratMasuk.ID_DISTRIBUSI_SURAT }) } />
                 ))
               }
             </List>
