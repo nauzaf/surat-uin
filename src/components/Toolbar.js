@@ -12,7 +12,7 @@ export default class Toolbar extends Component{
       <Header style={{backgroundColor: 'green'}}>
         <Left>
           <Button transparent onPress={this.props.aksi}>
-            <Icon name ='menu'/>
+            <Icon name = {this.props.icon}/>
           </Button>
         </Left>
         <Body>
