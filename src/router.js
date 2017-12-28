@@ -7,13 +7,15 @@ import SuratKeluarPage from './layouts/SuratKeluarPage'
 import LoginPage from './layouts/LoginPage'
 import TulisSuratPage from './layouts/TulisSuratPage'
 import WelcomePage from './layouts/WelcomePage'
+import DetailSuratPersonalPage from './layouts/DetailSuratPersonalPage'
 
 export const AppNavigator = StackNavigator({
     Login: { screen: LoginPage },
     SuratPersonal: { screen: SuratPersonalPage },
     SuratKeluar: { screen: SuratKeluarPage },
     TulisSurat: { screen: TulisSuratPage },
-    Welcome: { screen: WelcomePage }
+    Welcome: { screen: WelcomePage },
+    DetailSuratPersonal: { screen: DetailSuratPersonalPage }
 })
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
