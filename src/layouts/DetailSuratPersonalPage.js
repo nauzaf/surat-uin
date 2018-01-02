@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Container, Content, Text } from 'native-base'
+import { Container, Content, Text, Button } from 'native-base'
+import { StyleSheet } from 'react-native'
 import HTMLView from 'react-native-htmlview'
 
 import Toolbar from '../components/Toolbar'
@@ -48,17 +49,35 @@ class DetailSuratPersonalPage extends Component {
  
   render(){
     return(
-			<Container>
+			<Container >
 					<Toolbar judul = {this.state.data.DARI}  aksi = {this.goBack} icon='md-arrow-round-back'/>
-					<Content style={{alignSelf: 'center'}}>
-						<Text>ISi SURAT</Text>
+					<Content padder>
+            <Text style={styles.Label}>Dari</Text>
+            <Text>{this.state.data.DARI}</Text>
+            <Text style={styles.Label}>Waktu Kirim</Text>
+            <Text>{this.state.data.WAKTU_KIRIM}</Text>
+            <Text style={styles.Label}>Perihal</Text>
+            <Text>{this.state.data.PERIHAL}</Text>
+						<Text style={styles.Label}>Isi Surat</Text>
 						<HTMLView
 							value={this.state.data.ISI_SURAT}
 						/>
+            <Button block warning>
+              <Text>Balas</Text>
+            </Button>
 					</Content>
 			</Container>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  Label: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontWeight: 'bold',
+    fontSize: 18
+  }
+})
 
 export default DetailSuratPersonalPage

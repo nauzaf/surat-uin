@@ -9,6 +9,7 @@ import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
 import { doGetSuratPersonal } from '../store/actions/suratPersonal'
+import { doLogout } from '../store/actions/user'
 
 class SuratPersonalPage extends Component {
 
@@ -47,6 +48,10 @@ class SuratPersonalPage extends Component {
     suratKeluar: () => this.props.navigation.navigate('SuratKeluar'),
     tulisSurat: () => this.props.navigation.navigate('TulisSurat')
   }
+
+  logout = () => {
+    this.props.dispatchLogout()
+  }
  
   render(){
 
@@ -55,7 +60,7 @@ class SuratPersonalPage extends Component {
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} />}
+        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} navigator4={this.logout}/>}
         onClose={() => this.closeDrawer()} 
       >
         <Container>
@@ -85,7 +90,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratPersonal: (key) => dispatch(doGetSuratPersonal(key))
+    dispatchGetSuratPersonal: (key) => dispatch(doGetSuratPersonal(key)),
+    dispatchLogout: () => dispatch(doLogout())
   }
 }
 

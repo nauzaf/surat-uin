@@ -19,6 +19,14 @@ export default function (state = initialState, action) {
       state.mailAddress = action.dataUser.AlamatEmail
       state.jabatan = action.dataUser.AnggotaDari
       return state
+    case types.LOGOUT:
+      state.isLogin = false
+      state.userName = null
+      state.firstName = null
+      state.lastName = null
+      state.mailAddress = null
+      state.jabatan = []
+      return state
     default :
       return state
   }

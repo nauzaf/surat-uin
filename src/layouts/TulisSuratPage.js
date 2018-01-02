@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 import Toolbar from '../components/Toolbar'
-import SideBar from '../components/SideMenu'
 
 import { Drawer, Container, Content, Form, Item, Input, Button, Text } from 'native-base'
 
@@ -13,54 +12,29 @@ class TulisSuratPage extends Component {
     super(props)
   }
 
-  closeDrawer () {
-    this._drawer._root.close()
-  }
-
-  openDrawer () {
-    this._drawer._root.open()
-  }
-
-  open = () => {
-    this.openDrawer()
-  }
-
-  navigate = {
-    suratPersonal: () => this.props.navigation.navigate('SuratPersonal'),
-    suratKeluar: () => this.props.navigation.navigate('SuratKeluar'),
-    tulisSurat: () => this.props.navigation.navigate('TulisSurat')
-  }
+  goBack = () => this.props.navigation.goBack()
  
   render(){
-
-    const { navigate } = this.props.navigation
-
     return(
-      <Drawer
-        ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} />}
-        onClose={() => this.closeDrawer()} 
-      >
-        <Container>
-          <Toolbar judul='Tulis Surat' aksi = {this.open} icon='menu'/>
-          <Content>
-            <Form>
-              <Item floatingLabel>
-                <Input placeholder="NIM" />
-              </Item>
-              <Item floatingLabel>
-                <Input placeholder="Perihal" />
-              </Item>
-              <Item floatingLabel>
-                <Input placeholder="Pesan" />
-              </Item>
-            </Form>
-            <Button block success>
-              <Text>Kirim</Text>
-            </Button>
-          </Content>
-        </Container>
-      </Drawer>
+      <Container>
+        <Toolbar judul='Tulis Surat' aksi = {this.goBack} icon='md-arrow-round-back'/>
+        <Content padder>
+          <Form>
+            <Item floatingLabel>
+              <Input placeholder='NIM' />
+            </Item>
+            <Item floatingLabel>
+              <Input placeholder='Perihal' />
+            </Item>
+            <Item floatingLabel>
+              <Input placeholder='Pesan' />
+            </Item>
+          </Form>
+          <Button block warning style={{marginTop: 15}}>
+            <Text>Kirim</Text>
+          </Button>
+        </Content>
+      </Container>
     )
   }
 }

@@ -9,6 +9,7 @@ import { Drawer, Container, List, Content } from 'native-base'
 
 import { connect } from 'react-redux'
 import { doGetSuratKeluar } from '../store/actions/suratKeluar'
+import { doLogout } from '../store/actions/user'
 
 class SuratKeluarPage extends Component {
 
@@ -47,14 +48,17 @@ class SuratKeluarPage extends Component {
     suratKeluar: () => this.props.navigation.navigate('SuratKeluar'),
     tulisSurat: () => this.props.navigation.navigate('TulisSurat')
   }
+
+  logout = () => {
+    this.props.dispatchLogout()
+  }
  
  
   render(){
-
     return(
       <Drawer
         ref={(ref) => { this._drawer = ref }}
-        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} />}
+        content={<SideBar navigator={this._navigator} navigator1={this.navigate.suratPersonal} navigator2={this.navigate.suratKeluar} navigator3={this.navigate.tulisSurat} navigator4={this.logout} />}
         onClose={() => this.closeDrawer()} 
       >
         <Container>
@@ -84,7 +88,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
+    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key)),
+    dispatchLogout: () => dispatch(doLogout())
   }
 }
 

@@ -36,10 +36,25 @@ export function doLogin (username, pass) {
   }
 }
 
+export function doLogout () {
+  return (dispatch) => {
+    dispatch(logout())
+    dispatch(goToLogin())
+  }
+}
+
+export function logout () {
+  return { type: types.LOGOUT }
+}
+
 export function login (dataUser) {
   return { type: types.LOGIN, dataUser }
 }
 
 export function goToWelcome () {
   return { type: types.NAV_WELCOME }
+}
+
+export function goToLogin () {
+  return { type: types.NAV_LOGIN }
 }

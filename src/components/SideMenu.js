@@ -22,6 +22,7 @@ class SideBar extends Component {
           <SideMenuItem dynamicIcon='create' dynamicTitle='Tulis Surat' navigator={this.props.navigator3} />
           <SideMenuItem dynamicIcon='mail' dynamicTitle='Surat Personal' navigator={this.props.navigator1} />
           <SideMenuItem dynamicIcon='exit' dynamicTitle='Surat Keluar' navigator={this.props.navigator2} />
+          <SideMenuItem dynamicIcon='md-log-out' dynamicTitle='Logout' navigator={this.props.navigator4} />
         </Content>
       </Container>
     );

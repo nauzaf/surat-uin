@@ -14,6 +14,12 @@ export default (state = initialState, action) => {
                 state
             )
             break
+        case types.NAV_LOGIN:
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.reset({ index: 0, actions: [NavigationActions.navigate({ routeName: 'Login'})] }),
+                state
+            )
+            break
         default:
             nextState = AppNavigator.router.getStateForAction(action, state)
             break
