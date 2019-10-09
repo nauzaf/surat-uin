@@ -1,24 +1,42 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { login } from '../store/actions/login'
-import { AppState, TextInput, Button, View, Image, StyleSheet, Dimensions } from 'react-native'
+import { doLogin } from '../store/actions/user'
+import { doGetSuratPersonal } from '../store/actions/suratPersonal'
+import { doGetSuratKeluar } from '../store/actions/suratKeluar'
+import { TextInput, Button, View, Image, StyleSheet, Text } from 'react-native'
 
 class LoginPage extends Component {
+
+  static navigationOptions = { header: null }
+
   constructor(props) {
     super(props)
+    if (props.user.isLogin) {
+      this.getSurat(this.props.user.userName)
+      this.props.navigation.navigate('Welcome')
+    }
     this.state = {
       username: null,
       password: null
     }
   }
 
+  getSurat = (key) => {
+    this.props.dispatchGetSuratPersonal(key)
+    this.props.dispatchGetSuratKeluar(key)
+  }
+
   login = () => {
-    this.props.dispatchLogin()
+    if (!this.props.user.isLogin) {
+      this.props.dispatchDoLogin(this.state.username, this.state.password)
+    }
   }
 
   render () {
+
     return (
       <View style={styles.Container}>
+        <Text style={{alignItems: 'center', alignSelf: 'center', fontSize: 20, marginBottom:10}}>SISTIM SURAT UIN SUKA</Text>
         <Image
           style={{marginBottom: 40, alignSelf: 'center'}}
           source={require('../assets/img/logouin.png')}
@@ -40,7 +58,7 @@ class LoginPage extends Component {
         />        
         <Button
           style={{marginTop: 20}}
-          onPress= {this.login}
+          onPress= { this.login }
           title="Login"
           color='green'
         />
@@ -66,13 +84,15 @@ const styles = StyleSheet.create({
 
 function mapStateToProps (state) {
   return {
-    isLogin: state.login.isLogin
+    user: state.user
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    dispatchLogin: () => dispatch(login())
+    dispatchDoLogin: (username, pass) => dispatch(doLogin(username, pass)),
+    dispatchGetSuratPersonal: (key) => dispatch(doGetSuratPersonal(key)),
+    dispatchGetSuratKeluar: (key) => dispatch(doGetSuratKeluar(key))
   }
 }
 

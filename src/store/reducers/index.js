@@ -1,6 +1,12 @@
 import { combineReducers } from 'redux'
-import login from './login'
+import user from './user'
+import suratpersonal from './suratpersonal'
+import suratkeluar from './suratkeluar'
+import nav from './navigator'
 
-export default combineReducers({
-  login
-})
+export default {
+  user,
+  suratpersonal,
+  suratkeluar,
+  nav
+}
